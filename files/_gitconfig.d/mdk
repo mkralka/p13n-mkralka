@@ -1,0 +1,11 @@
+[user]
+	name = "Michael Kralka"
+	email = "michael.kralka@gmail.com"
+[push]
+	default = simple
+[diff]
+	renames = true
+[http]
+	postBuffer = 524288000
+[color]
+	ui = true

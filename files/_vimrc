@@ -1,0 +1,57 @@
+" vim: set filetype=vim:
+set nocompatible
+
+syntax on
+filetype plugin indent on
+if &t_Co == 256
+	colorscheme mdk_black
+else
+	colorscheme evening
+endif
+if exists('+colorcolumn')
+	set colorcolumn=80
+endif
+set   completeopt=longest
+set noexpandtab
+set   history=500
+set   hlsearch
+set   ignorecase        " smartcase is also set below
+set   incsearch
+set   laststatus=2
+set   list
+set   listchars=eol:¶,tab:»-,trail:·,extends:»,precedes:«
+set   modelines=10
+if exists("+mouse")
+	set   mouse=a
+endif
+set   number
+set   shiftwidth=8
+set   showtabline=2     " always show tab line
+set   smartcase         " ignorecase needs to be set
+set   smartindent
+set   smarttab
+set   spell
+set   statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+set   tabstop=8
+set   textwidth=72      " Override per file type if need be
+set   wildmode=longest,list
+set nowrap
+set nowrapscan
+
+
+" Only show cursorline/cursorcolumn in the current window
+set cursorline cursorcolumn
+"autocmd WinEnter * setlocal cursorline cursorcolumn
+"autocmd WinLeave * setlocal nocursorline nocursorcolumn
+
+" Search source files only
+command! -nargs=1 CGrep lvimgrep <args> **/*.[ch]
+nnoremap fc <esc>:CGrep /\<lt><C-r><C-w>\>/j<cr>
+nnoremap fp <esc>:lvimgrep /\<lt><C-r><C-w>\>/j **/*.py<cr>
+nnoremap fx <esc>:lvimgrep /\<lt><C-r><C-w>\>/j <C-r>%<cr>
+nnoremap ff <esc>:lli<cr>
+
+" Work around issue with gnome-256color terminal
+if ($TERM == 'gnome-256color')
+	set ttymouse=xterm2
+endif
