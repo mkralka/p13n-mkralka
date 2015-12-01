@@ -13,6 +13,7 @@ if exists('+colorcolumn')
 endif
 set   completeopt=longest
 set noexpandtab
+set   hidden
 set   history=500
 set   hlsearch
 set   ignorecase        " smartcase is also set below
@@ -46,10 +47,19 @@ set cursorline cursorcolumn
 
 " Search source files only
 command! -nargs=1 CGrep lvimgrep <args> **/*.[ch]
-nnoremap fc <esc>:CGrep /\<lt><C-r><C-w>\>/j<cr>
-nnoremap fp <esc>:lvimgrep /\<lt><C-r><C-w>\>/j **/*.py<cr>
-nnoremap fx <esc>:lvimgrep /\<lt><C-r><C-w>\>/j <C-r>%<cr>
-nnoremap ff <esc>:lli<cr>
+command! -nargs=1 PyGrep lvimgrep <args> **/*.[ch]
+nnoremap <C-f><C-c> <esc>:CGrep /\<lt><C-r><C-w>\>/j<cr>
+nnoremap <C-f><C-p> <esc>:PyGrep /\<lt><C-r><C-w>\>/j<cr>
+nnoremap <C-f><C-x> <esc>:lvimgrep /\<lt><C-r><C-w>\>/j <C-r>%<cr>
+nnoremap <C-f><C-f> <esc>:lli<cr>
+
+
+" Navigate and close windows
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-c> <C-w>c
 
 " Work around issue with gnome-256color terminal
 if ($TERM == 'gnome-256color')
