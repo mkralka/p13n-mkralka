@@ -5,6 +5,7 @@
 	default = simple
 [diff]
 	renames = true
+	noprefix = true
 [http]
 	postBuffer = 524288000
 [color]
