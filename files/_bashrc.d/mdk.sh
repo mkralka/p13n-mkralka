@@ -51,3 +51,9 @@ if $__p13n_git; then
 else
 	export PS1='[\h \[\033[0;36m\]\W\[\033[0m\]]\$ '
 fi
+
+
+##
+## Environment Variables
+##
+export EDITOR=vim
