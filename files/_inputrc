@@ -1,0 +1,10 @@
+# Search history incrementally on up, ^P, down, ^N
+"\e[A": history-search-backward
+"\C-p": history-search-backward
+"\e[B": history-search-forward
+"\C-n": history-search-forward
+
+"\C-f": shell-forward-word
+"\C-b": shell-backward-word
+
+
