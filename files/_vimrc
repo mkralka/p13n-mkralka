@@ -8,6 +8,7 @@ if &t_Co == 256
 else
 	colorscheme evening
 endif
+set   autoindent
 if exists('+colorcolumn')
 	set colorcolumn=80
 endif
@@ -29,7 +30,6 @@ set   number
 set   shiftwidth=8
 set   showtabline=2     " always show tab line
 set   smartcase         " ignorecase needs to be set
-set   smartindent
 set   smarttab
 set   spell
 set   statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
@@ -39,20 +39,22 @@ set   wildmode=longest,list
 set nowrap
 set nowrapscan
 
+" Fold based on the most recent search and revert
+nnoremap <Leader>f :setlocal foldmethod=expr foldlevel=0 foldexpr=getline(v:lnum)!~@/<CR>
+nnoremap <Leader>F :setlocal foldmethod&<CR>
 
 " Only show cursorline/cursorcolumn in the current window
 set cursorline cursorcolumn
-"autocmd WinEnter * setlocal cursorline cursorcolumn
-"autocmd WinLeave * setlocal nocursorline nocursorcolumn
+autocmd WinEnter * setlocal cursorline cursorcolumn
+autocmd WinLeave * setlocal nocursorline nocursorcolumn
 
 " Search source files only
 command! -nargs=1 CGrep lvimgrep <args> **/*.[ch]
-command! -nargs=1 PyGrep lvimgrep <args> **/*.[ch]
+command! -nargs=1 PyGrep lvimgrep <args> **/*.py
 nnoremap <C-f><C-c> <esc>:CGrep /\<lt><C-r><C-w>\>/j<cr>
 nnoremap <C-f><C-p> <esc>:PyGrep /\<lt><C-r><C-w>\>/j<cr>
 nnoremap <C-f><C-x> <esc>:lvimgrep /\<lt><C-r><C-w>\>/j <C-r>%<cr>
 nnoremap <C-f><C-f> <esc>:lli<cr>
-
 
 " Navigate and close windows
 nnoremap <C-j> <C-w>j
@@ -60,6 +62,9 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
 nnoremap <C-c> <C-w>c
+
+" Markdown >> Modula-2 
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " Work around issue with gnome-256color terminal
 if ($TERM == 'gnome-256color')
