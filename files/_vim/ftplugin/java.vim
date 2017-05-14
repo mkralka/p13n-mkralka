@@ -9,6 +9,7 @@ if exists("+colorcolumn")
 endif
 setlocal   foldmethod=syntax
 setlocal   foldcolumn=4
+setlocal   foldlevelstart=1
 setlocal   shiftwidth=4
 setlocal   smartindent
 setlocal   tabstop=8

@@ -3,15 +3,12 @@ set nocompatible
 
 syntax on
 filetype plugin indent on
-if &t_Co == 256
-	colorscheme mdk_black
-else
-	colorscheme evening
-endif
+colorscheme mdk_black
 set   autoindent
 if exists('+colorcolumn')
 	set colorcolumn=80
 endif
+set   clipboard^=unnamed        " Sync unamed with clipboard registers
 set   completeopt=longest
 set noexpandtab
 set   hidden
@@ -69,4 +66,25 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 " Work around issue with gnome-256color terminal
 if ($TERM == 'gnome-256color')
 	set ttymouse=xterm2
+endif
+
+runtime autoload/plug.vim
+if exists("*plug#begin")
+	let g:ctrlp_clear_cache_on_exit = 0
+	let g:ctrlp_show_hidden = 1
+	let g:ctrlp_working_path_mode = ''
+	let g:ctrlp_match_func = {'match': 'matcher#cmatch'}
+	let g:ctrlp_user_command = ['.git', 'git ls-files %s -co --exclude-standard']
+	let g:ctrlp_lazy_update = 100
+
+	call plug#begin('~/.vim/plugged')
+	Plug '/usr/local/opt/fzf'
+
+	Plug 'ctrlpvim/ctrlp.vim'
+	Plug 'JazzCore/ctrlp-cmatcher', {'do': './install.sh'}
+
+	Plug 'junegunn/fzf.vim'
+
+	Plug 'nkouevda/vim-thrift'
+	call plug#end()
 endif

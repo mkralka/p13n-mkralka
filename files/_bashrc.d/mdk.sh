@@ -57,3 +57,8 @@ fi
 ## Environment Variables
 ##
 export EDITOR=vim
+
+##
+## Aliases
+##
+alias vi=vim
