@@ -1,6 +1,8 @@
 [user]
 	name = "Michael Kralka"
 	email = "michael.kralka@gmail.com"
+[pull]
+ 	rebase = true
 [push]
 	default = simple
 [diff]
