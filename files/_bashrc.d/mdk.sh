@@ -14,6 +14,12 @@ PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND;}history -a"
 shopt -s cmdhist
 
 ##
+## Path
+##
+
+test -d "$HOME/bin" && prepend_path "$HOME/bin"
+
+##
 ## Commands
 ##
 
