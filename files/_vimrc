@@ -83,6 +83,8 @@ if exists("*plug#begin")
 	Plug 'ctrlpvim/ctrlp.vim'
 	Plug 'JazzCore/ctrlp-cmatcher', {'do': './install.sh'}
 
+	Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-completer' }
+
 	Plug 'junegunn/fzf.vim'
 
 	Plug 'nkouevda/vim-thrift'
