@@ -5,7 +5,7 @@
 ##
 
 # Append history to .bash_history, rather than overwrite, with interleave
-# when multiple sessions are ioen
+# when multiple sessions are open.
 shopt -s histappend
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND;}history -a"
 
@@ -19,11 +19,11 @@ shopt -s cmdhist
 
 ## Git
 __p13n_git=false
-for dir in /Applications/Xcode.app/Contents/Developer/usr/share/git-core \
+for __p13n_dir in /Applications/Xcode.app/Contents/Developer/usr/share/git-core \
 	/Library/Developer/CommandLineTools/usr/share/git-core; do
-	if test -f "$dir/git-completion.bash" -a -f "$dir/git-prompt.sh"; then
-		. "$dir/git-completion.bash"
-		. "$dir/git-prompt.sh"
+	if test -f "$__p13n_dir/git-completion.bash" -a -f "$__p13n_dir/git-prompt.sh"; then
+		. "$__p13n_dir/git-completion.bash"
+		. "$__p13n_dir/git-prompt.sh"
 		__p13n_git=true
 		break
 	fi
