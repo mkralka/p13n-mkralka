@@ -1,0 +1,4 @@
+Host *
+	# Explicitly hash known_hosts file, even if the system default
+	# is to not hash them.
+	HashKnownHosts yes
