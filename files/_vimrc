@@ -68,6 +68,11 @@ if ($TERM == 'gnome-256color')
 	set ttymouse=xterm2
 endif
 
+
+" Native macos version of vim (/usr/bin/vi*) reports itself as the UNIX
+" version of vim but not the mac version, unlike brew and macvim.
+let g:macos_native = has('unix') && !has('macunix') && 'darwin' ==? substitute(system('uname'), '\n', '', '')
+
 runtime autoload/plug.vim
 if exists("*plug#begin")
 	let g:ctrlp_clear_cache_on_exit = 0
@@ -83,7 +88,12 @@ if exists("*plug#begin")
 	Plug 'ctrlpvim/ctrlp.vim'
 	Plug 'JazzCore/ctrlp-cmatcher', {'do': './install.sh'}
 
-	Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-completer' }
+	" The native version vim seems to be incompatible with YCM
+	" https://github.com/Valloric/YouCompleteMe/issues/3271
+	" Don't use the plugin in running the native vim
+	if ! g:macos_native
+		Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-completer --system-libclang' }
+	endif
 
 	Plug 'junegunn/fzf.vim'
 
