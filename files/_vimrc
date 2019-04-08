@@ -78,15 +78,23 @@ if exists("*plug#begin")
 	let g:ctrlp_clear_cache_on_exit = 0
 	let g:ctrlp_show_hidden = 1
 	let g:ctrlp_working_path_mode = ''
-	let g:ctrlp_match_func = {'match': 'matcher#cmatch'}
-	let g:ctrlp_user_command = ['.git', 'git ls-files %s -co --exclude-standard']
+	" TODO: Re-enable once python3 compatibility issue is fixed
+	"let g:ctrlp_match_func = {'match': 'matcher#cmatch'}
+	let g:ctrlp_user_command = {
+	\	'types': {
+	\		1: ['.git', 'git ls-files %s -co --exclude-standard'],
+	\		2: ['.hg', 'hg --cwd %s locate -I .'],
+	\	},
+	\	'fallback': 'find %s -type f'
+	\}
 	let g:ctrlp_lazy_update = 100
 
 	call plug#begin('~/.vim/plugged')
 	Plug '/usr/local/opt/fzf'
 
 	Plug 'ctrlpvim/ctrlp.vim'
-	Plug 'JazzCore/ctrlp-cmatcher', {'do': './install.sh'}
+	" TODO: Re-enable once python3 compatibility issue is fixed
+	" Plug 'JazzCore/ctrlp-cmatcher', {'do': './install.sh'}
 
 	" The native version vim seems to be incompatible with YCM
 	" https://github.com/Valloric/YouCompleteMe/issues/3271
