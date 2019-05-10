@@ -133,7 +133,7 @@ let colors_name = "mdk_black"
 
 call s:highlight('Normal',       'VeryLightGray', 'Black',          'NONE',   'LightGray', 'Black',      'NONE')
 call s:highlight('NonText',      'VeryDarkGray',  'Black',          'NONE',   'DarkGray',  'Black',      'NONE')
-call s:highlight('SpecialKey',   'Charcoal',      'NONE',           'NONE',   'DarkGray',  'NONE',       'NONE')
+call s:highlight('SpecialKey',   'VeryDarkGray',  'NONE',           'NONE',   'DarkGray',  'NONE',       'NONE')
 
 call s:highlight('Cursor',       'Black',         'DarkAmber',      'NONE',   'Black',     'DarkYellow', 'NONE')
 call s:highlight('Visual',       'NONE',          'DarkCoolGray',   'NONE',   'NONE',      'DarkGray',   'NONE')
@@ -144,7 +144,7 @@ if version >= 700
     call s:highlight('CursorLine',   'NONE',          'Charcoal',       'NONE',   'NONE',      'DarkBlue',   'bold')
 endif
 
-call s:highlight('LineNr',       'DarkGray',      'VeryDarkGray',   'NONE',   'DarkGray',  'Black',      'NONE')
+call s:highlight('LineNr',       'Gray',          'DarkGray',       'NONE',   'DarkGray',  'Black',      'NONE')
 
 call s:highlight('VertSplit',    'DarkGray',      'DarkGray',       'NONE',   'DarkGray',  'DarkGray',   'NONE')
 call s:highlight('StatusLine',   'White',         'DarkGray',       'italic', 'White',     'DarkGray',   'NONE')
@@ -203,7 +203,7 @@ endif
 
 " Syntax highlighting
 
-call s:highlight('Comment',              'DarkGray',      'NONE',         'NONE',      'DarkGray',    'NONE',       'NONE')
+call s:highlight('Comment',              'Gray',          'NONE',         'NONE',      'Gray',        'NONE',       'NONE')
 
 call s:highlight('Constant',             'PaleGreen',     'NONE',         'NONE',      'DarkCyan',    'NONE',       'NONE')
 call s:highlight('String',               'DarkGreen',     'NONE',         'NONE',      'DarkGreen',   'NONE',       'NONE')
