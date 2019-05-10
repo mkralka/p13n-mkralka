@@ -4,3 +4,4 @@
 /.ctags
 /.ycm_extra_conf.py
 .ipynb_checkpoints
+.vimrc

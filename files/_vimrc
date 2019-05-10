@@ -11,6 +11,7 @@ endif
 set   clipboard^=unnamed        " Sync unamed with clipboard registers
 set   completeopt=longest
 set noexpandtab
+set   exrc
 set   hidden
 set   history=500
 set   hlsearch
@@ -108,3 +109,4 @@ if exists("*plug#begin")
 	Plug 'nkouevda/vim-thrift'
 	call plug#end()
 endif
+set secure
