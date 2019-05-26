@@ -26,6 +26,7 @@ if exists("+mouse")
 endif
 set   number
 set   shiftwidth=8
+set   shiftround
 set   showtabline=2     " always show tab line
 set   smartcase         " ignorecase needs to be set
 set   smarttab
@@ -103,9 +104,9 @@ if exists("*plug#begin")
 	if ! g:macos_native
 		Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-completer --system-libclang' }
 	endif
-
 	Plug 'junegunn/fzf.vim'
 
+	Plug 'nvie/vim-flake8'
 	Plug 'nkouevda/vim-thrift'
 	call plug#end()
 endif
