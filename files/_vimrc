@@ -103,6 +103,15 @@ if exists("*plug#begin")
 	" Don't use the plugin in running the native vim
 	if ! g:macos_native
 		Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-completer --system-libclang' }
+		" YCM needs to know where the python3 interpreter is, if
+		" it's not in the standard place (e.g., on macos).
+		for p in split($PATH, ":")
+			if executable(p . "/python3")
+				let g:ycm_server_python_interpreter=p . "/python3"
+				break
+			endif
+		endfor
+		unlet p
 	endif
 	Plug 'junegunn/fzf.vim'
 
