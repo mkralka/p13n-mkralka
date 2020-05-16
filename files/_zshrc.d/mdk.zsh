@@ -35,15 +35,18 @@ autoload bashcompinit && bashcompinit
 ##
 
 ## git
-__p13n_git=false
-for __p13n_dir in /Applications/Xcode.app/Contents/Developer/usr/share/git-core \
-	/Library/Developer/CommandLineTools/usr/share/git-core; do
-	if test -f "$__p13n_dir/git-completion.zsh" -a -f "$__p13n_dir/git-prompt.sh"; then
+__p13n_git_prompt=false
+for __p13n_dir in {/usr/share/git-core/contrib/completion,/Applications/Xcode.app/Contents/Developer/usr/share/git-core,/Library/Developer/CommandLineTools/usr/share/git-core}; do
+	test -d "$__p13n_dir" || continue
+
+	if test -f "$__p13n_dir/git-completion.zsh"; then
 		zstyle ':completion:*:*:git:*' script "$__p13n_dir/.git-completion.zsh"
-		. "$__p13n_dir/git-prompt.sh"
-		__p13n_git=true
-		break
 	fi
+	if test -f "$__p13n_dir/git-prompt.sh"; then
+		. "$__p13n_dir/git-prompt.sh"
+		__p13n_git_prompt=true
+	fi
+	break
 done
 
 ## ls
@@ -66,7 +69,7 @@ fi
 
 # Need to expand commands in the prompt
 setopt promptsubst
-if $__p13n_git; then
+if $__p13n_git_prompt; then
 	export PS1=$'%{\e[0;33m%}%n@%m%{\e[0m%} %{\e[0;36m%}%c%{\e[0m%}$(__git_ps1 " %%{\e[0;32m%%}(%s)%%{\e[0m%%}") %# '
 else
 	export PS1=$'%{\e[0;33m%}%n@%m%{\e[0m%} %{\e[0;36m%}%c%{\e[0m%} %# '
@@ -82,3 +85,4 @@ export EDITOR=vim
 ## Aliases
 ##
 alias vi=vim
+alias gsync='rsync --exclude=".git/" --filter="dir-merge,- .gitignore" --delete-after'
