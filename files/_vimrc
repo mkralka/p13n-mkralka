@@ -94,6 +94,7 @@ if exists("*plug#begin")
 	call plug#begin('~/.vim/plugged')
 	Plug '/usr/local/opt/fzf'
 
+	Plug 'airblade/vim-gitgutter'
 	Plug 'ctrlpvim/ctrlp.vim'
 	" TODO: Re-enable once python3 compatibility issue is fixed
 	" Plug 'JazzCore/ctrlp-cmatcher', {'do': './install.sh'}
@@ -117,6 +118,7 @@ if exists("*plug#begin")
 
 	Plug 'nvie/vim-flake8'
 	Plug 'nkouevda/vim-thrift'
+	Plug 'tpope/vim-fugitive'
 	call plug#end()
 endif
 set secure
