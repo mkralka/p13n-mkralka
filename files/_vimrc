@@ -77,9 +77,20 @@ let g:macos_native = has('unix') && !has('macunix') && 'darwin' ==? substitute(s
 
 runtime autoload/plug.vim
 if exists("*plug#begin")
+
+	call plug#begin('~/.vim/plugged')
+	Plug '/usr/local/opt/fzf'
+
+	Plug 'airblade/vim-gitgutter'
+
+	Plug 'Chiel92/vim-autoformat'
+	noremap <F3> :Autoformat<CR>
+
+	Plug 'ctrlpvim/ctrlp.vim'
 	let g:ctrlp_clear_cache_on_exit = 0
 	let g:ctrlp_show_hidden = 1
 	let g:ctrlp_working_path_mode = ''
+	let g:ctrlp_extensions = ['quickfix', 'buffertag', 'tag']
 	" TODO: Re-enable once python3 compatibility issue is fixed
 	"let g:ctrlp_match_func = {'match': 'matcher#cmatch'}
 	let g:ctrlp_user_command = {
@@ -91,11 +102,6 @@ if exists("*plug#begin")
 	\}
 	let g:ctrlp_lazy_update = 100
 
-	call plug#begin('~/.vim/plugged')
-	Plug '/usr/local/opt/fzf'
-
-	Plug 'airblade/vim-gitgutter'
-	Plug 'ctrlpvim/ctrlp.vim'
 	" TODO: Re-enable once python3 compatibility issue is fixed
 	" Plug 'JazzCore/ctrlp-cmatcher', {'do': './install.sh'}
 
@@ -104,20 +110,26 @@ if exists("*plug#begin")
 	" Don't use the plugin in running the native vim
 	if ! g:macos_native
 		Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-completer --system-libclang' }
-		" YCM needs to know where the python3 interpreter is, if
-		" it's not in the standard place (e.g., on macos).
-		for p in split($PATH, ":")
-			if executable(p . "/python3")
-				let g:ycm_server_python_interpreter=p . "/python3"
-				break
-			endif
-		endfor
-		unlet p
+		if !has('python3')
+			Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-completer --system-libclang', 'branch': 'legacy-py2' }
+		else
+			Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-completer --system-libclang' }
+			" YCM needs to know where the python3 interpreter is, if
+			" it's not in the standard place (e.g., on macos).
+			for p in split($PATH, ":")
+				if executable(p . "/python3")
+					let g:ycm_server_python_interpreter=p . "/python3"
+					break
+				endif
+			endfor
+			unlet p
+		endif
 	endif
 	Plug 'junegunn/fzf.vim'
 
 	Plug 'nvie/vim-flake8'
 	Plug 'nkouevda/vim-thrift'
+	Plug 'hashivim/vim-terraform'
 	Plug 'tpope/vim-fugitive'
 	call plug#end()
 endif
