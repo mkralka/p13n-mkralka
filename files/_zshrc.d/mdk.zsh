@@ -7,10 +7,29 @@
 
 # History settings
 # - share history between shell sessions
-# - store dups, but expire the duplicates first when trimming the history
+# - don't store consecutive duplicates (but will store them if there are
+#   intervening commands).
+# - ... but expire the duplicates first when trimming the history
+# - remove superfluous blanks before adding a command to the history
 # - verify command before executing
-setopt sharehistory histexpiredupsfirst histverify
+setopt share_history hist_ignore_dups hist_expire_dups_first hist_reduce_blanks hist_verify
 
+
+##
+## Line Editor
+##
+
+# When navigating the history, filter out everything except what matches
+# the text before the cursor
+bindkey "\e[A" history-beginning-search-backward
+bindkey "\e[B" history-beginning-search-forward
+
+# CTRL+B/CTRL+F backward/forward 1 word as delimited by whitespace
+bindkey "^B" vi-backward-blank-word
+bindkey "^F" vi-forward-blank-word
+# ESC b/f move to the beginning of the word, vi style
+bindkey "^[B" vi-backward-word
+bindkey "^[F" vi-forward-word
 
 ##
 ## Path
@@ -75,6 +94,13 @@ else
 	export PS1=$'%{\e[0;33m%}%n@%m%{\e[0m%} %{\e[0;36m%}%c%{\e[0m%} %# '
 fi
 
+
+##
+## Miscellaneous
+##
+
+# Use Dvorak keyboard (instead of qwerty) when examining spelling mistakes
+setopt dvorak
 
 ##
 ## Environment Variables
