@@ -8,6 +8,8 @@
 [diff]
 	renames = true
 	noprefix = true
+[init]
+	defaultBranch = main
 [http]
 	postBuffer = 524288000
 [color]
