@@ -103,11 +103,6 @@ fi
 setopt dvorak
 
 ##
-## Environment Variables
-##
-export EDITOR=vim
-
-##
 ## Aliases
 ##
 alias vi=vim
