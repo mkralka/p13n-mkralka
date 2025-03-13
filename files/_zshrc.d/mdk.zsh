@@ -24,12 +24,14 @@ setopt share_history hist_ignore_dups hist_expire_dups_first hist_reduce_blanks 
 bindkey "\e[A" history-beginning-search-backward
 bindkey "\e[B" history-beginning-search-forward
 
-# CTRL+B/CTRL+F backward/forward 1 word as delimited by whitespace
-bindkey "^B" vi-backward-blank-word
-bindkey "^F" vi-forward-blank-word
-# ESC b/f move to the beginning of the word, vi style
-bindkey "^[B" vi-backward-word
-bindkey "^[F" vi-forward-word
+# By default, / and ? use normal search; use incremental search instead.
+# Mirror vim's behavior of using ^G/^T to move to the previous/next match while
+# incremental search is active..
+bindkey -M vicmd "/" history-incremental-search-backward
+bindkey -M vicmd "?" history-incremental-search-forward
+bindkey -M isearch "^G" history-incremental-search-backward
+bindkey -M isearch "^T" history-incremental-search-forward
+
 
 ##
 ## Path
