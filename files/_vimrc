@@ -32,6 +32,7 @@ set   shiftround
 set   showtabline=2             " always show tab line
 set   smartcase                 " ignorecase needs to be set
 set   smarttab
+set   softtabstop=-1            " use shiftwidth
 set   spell
 set   statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set   tabstop=8
