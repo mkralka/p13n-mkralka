@@ -1,8 +1,9 @@
 " vim: set filetype=vim:
 set nocompatible
 
-syntax on
 filetype plugin indent on
+syntax on                       " After filetype, in case any syntax files depend on plugin support,
+                                " which seems to be the case for vim-ledger
 colorscheme mdk_black
 set   autoindent
 if exists('+colorcolumn')
