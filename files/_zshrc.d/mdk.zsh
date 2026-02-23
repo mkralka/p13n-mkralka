@@ -32,6 +32,10 @@ bindkey -M vicmd "?" history-incremental-search-forward
 bindkey -M isearch "^G" history-incremental-search-backward
 bindkey -M isearch "^T" history-incremental-search-forward
 
+# Reduce the ESC timeout to 10µs; the default in 400ms, which is
+# long enough to make moving from insert to normal mode awkward.
+# setting to zero will break arrow keys when in insert mode.
+typeset -g KEYTIMEOUT=1
 
 ##
 ## Path
