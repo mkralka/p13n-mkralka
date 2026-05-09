@@ -64,9 +64,6 @@ __p13n_git_prompt=false
 for __p13n_dir in {/usr/share/git-core/contrib/completion,/Applications/Xcode.app/Contents/Developer/usr/share/git-core,/Library/Developer/CommandLineTools/usr/share/git-core}; do
 	test -d "$__p13n_dir" || continue
 
-	if test -f "$__p13n_dir/git-completion.zsh"; then
-		zstyle ':completion:*:*:git:*' script "$__p13n_dir/.git-completion.zsh"
-	fi
 	if test -f "$__p13n_dir/git-prompt.sh"; then
 		. "$__p13n_dir/git-prompt.sh"
 		__p13n_git_prompt=true
