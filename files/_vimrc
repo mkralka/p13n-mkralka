@@ -68,8 +68,10 @@ nnoremap <C-c> <C-w>c
 " Markdown >> Modula-2 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
-" Work around issue with gnome-256color terminal
-if ($TERM == 'gnome-256color')
+" Work around issue with vim failing to detect appropriate mouse protocol
+if exists('$TMUX')
+	set ttymouse=sgr
+elseif ($TERM == 'gnome-256color')
 	set ttymouse=xterm2
 endif
 
