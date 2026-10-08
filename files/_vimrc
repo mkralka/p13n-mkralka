@@ -65,6 +65,28 @@ nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
 nnoremap <C-c> <C-w>c
 
+" Navigate screen/file lines
+" up/down/left/right/h/j/k/l have their normal directional meaning, but:
+"   - default: up/down navigate screen lines
+"   - meta key: up/down navigate file lines
+" There is no equivalent for left/right because vim *always* navigates
+" within the current file line (moving between screen lines at the wrap
+" boundary).
+noremap <Up>   gk
+noremap <Down> gj
+noremap j gj
+noremap k gk
+
+noremap <M-Up>   k
+noremap <M-Down> j
+noremap <M-j>    j
+noremap <M-k>    k
+
+inoremap <Up>     <C-o>gk
+inoremap <Down>   <C-o>gj
+inoremap <M-Up>   <C-o>k
+inoremap <M-Down> <C-o>j
+
 " Markdown >> Modula-2 
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
@@ -82,14 +104,18 @@ runtime autoload/plug.vim
 if exists("*plug#begin")
 
 	call plug#begin('~/.vim/plugged')
-	Plug '/usr/local/opt/fzf'
+	" Plug '/usr/local/opt/fzf'
 
 	Plug 'airblade/vim-gitgutter'
 
 	Plug 'Chiel92/vim-autoformat'
 	noremap <F3> :Autoformat<CR>
 
+	" let g:black_use_virtualenv = 0
+	Plug 'shaoran/vim-ruff'
+
 	Plug 'ctrlpvim/ctrlp.vim'
+	let g:ctrlp_cmd = 'CtrlPBuffer' " search buffers by default
 	let g:ctrlp_clear_cache_on_exit = 0
 	let g:ctrlp_show_hidden = 1
 	let g:ctrlp_working_path_mode = ''
@@ -112,19 +138,24 @@ if exists("*plug#begin")
 	" https://github.com/Valloric/YouCompleteMe/issues/3271
 	" Don't use the plugin in running the native vim
 	if ! g:macos_native
+		" YCM remaps up/down, overriding custom behavior. <C-[> is terminal-
+		" equivalent to <Esc> and cannot be used.
+		let g:ycm_key_list_select_completion = ['<S-Down>']
+		let g:ycm_key_list_previous_completion = ['<S-Up>']
 		if !has('python3')
-			Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-completer --go-completer --system-libclang', 'branch': 'legacy-py2' }
+			Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-completer --go-completer', 'branch': 'legacy-py2' }
 		else
-			Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --java-completer --go-completer --system-libclang' }
+			Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer --java-completer --go-completer' }
 		endif
 	endif
 	Plug 'junegunn/fzf.vim'
 
 	Plug 'nvie/vim-flake8'
-	Plug 'nkouevda/vim-thrift'
-	Plug 'hashivim/vim-terraform'
-	Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 	Plug 'tpope/vim-fugitive'
+	Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+	Plug 'wojtekmach/vim-rename'
+	Plug 'hashivim/vim-terraform'
+	Plug 'nkouevda/vim-thrift'
 	call plug#end()
 endif
 
