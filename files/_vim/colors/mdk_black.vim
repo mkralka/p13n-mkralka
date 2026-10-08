@@ -301,4 +301,19 @@ hi link javaScriptNumber      Number
 " Special for CSharp
 hi  link csXmlTag             Keyword      
 
+" Special for patch/diff files viewed as plain text (filetype=diff)
+" MDK: Standard red-for-remove, green-for-add, aligned with this palette.
+"      Muted variants (Red/PaleGreen) used instead of the vivid
+"      DarkRed/DarkGreen to keep them easy on the eyes.
+"      DiffDelete/DiffAdd/DiffChange/DiffText above are for vimdiff mode only.
+call s:highlight('diffRemoved',         'Red',           'NONE',         'NONE',      'Red',         'NONE',       'NONE')
+call s:highlight('diffAdded',           'PaleGreen',     'NONE',         'NONE',      'Green',       'NONE',       'NONE')
+hi link diffLine        Statement
+hi link diffSubname     Type
+call s:highlight('diffFile',            'LightPurple',   'NONE',         'bold',      'Magenta',     'NONE',       'NONE')
+hi link diffOldFile     diffFile
+hi link diffNewFile     diffFile
+hi link diffComment     Comment
+" MDK: end
+
 " Special for PHP
