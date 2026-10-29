@@ -18,6 +18,7 @@ set   history=500
 set   hlsearch
 set   ignorecase                " smartcase is also set below
 set   incsearch
+set nojoinspaces                " Use 1 space after end-of-line punctuation.
 set   laststatus=2
 set   list
 set   listchars=eol:¶,tab:»-,trail:·,extends:»,precedes:«
