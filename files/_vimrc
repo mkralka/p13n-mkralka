@@ -7,7 +7,7 @@ syntax on                       " After filetype, in case any syntax files depen
 colorscheme mdk_black
 set   autoindent
 if exists('+colorcolumn')
-	set colorcolumn=80
+	set colorcolumn=+1,+2,+3
 endif
 set   clipboard^=unnamed        " Sync unamed with clipboard registers
 set   completeopt=longest
