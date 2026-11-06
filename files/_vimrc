@@ -87,10 +87,6 @@ if exists("*plug#begin")
 	call plug#begin('~/.vim/plugged')
 	Plug '/usr/local/opt/fzf'
 
-	Plug 'airblade/vim-gitgutter'
-
-	Plug 'Chiel92/vim-autoformat'
-	noremap <F3> :Autoformat<CR>
 
 	Plug 'ctrlpvim/ctrlp.vim'
 	let g:ctrlp_clear_cache_on_exit = 0
@@ -123,11 +119,18 @@ if exists("*plug#begin")
 	endif
 	Plug 'junegunn/fzf.vim'
 
+
+	Plug 'Chiel92/vim-autoformat'
+	noremap <F3> :Autoformat<CR>
+
 	Plug 'nvie/vim-flake8'
-	Plug 'nkouevda/vim-thrift'
-	Plug 'hashivim/vim-terraform'
-	Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 	Plug 'tpope/vim-fugitive'
+	Plug 'airblade/vim-gitgutter'
+	Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+	Plug 'wojtekmach/vim-rename'
+	Plug 'shaoran/vim-ruff'
+	Plug 'hashivim/vim-terraform'
+	Plug 'nkouevda/vim-thrift'
 	call plug#end()
 endif
 
